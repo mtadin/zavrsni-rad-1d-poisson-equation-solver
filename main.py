@@ -18,12 +18,12 @@ print(outputs)
 model = keras.Sequential()
 model.add(keras.layers.Dense(200, activation='relu'))
 model.add(keras.layers.Dense(100, activation='relu'))
-# model.add(keras.layers.Dense(10, activation='relu'))
+# model.add(keras.layers.Dense(10, activation='relu')) treci sloj usporava treniranje, a opcenito ne poboljsava rezultate
 model.add(keras.layers.Dense(1))
 model.compile(loss='mse', optimizer='adam') # optimizer SGD ili adam
 
 # treniranje modela
-model.fit(inputs.values, outputs.values, epochs=125)
+model.fit(inputs.values, outputs.values, epochs=100)
 
 # predictions
 predictions = model.predict(inputs.values)

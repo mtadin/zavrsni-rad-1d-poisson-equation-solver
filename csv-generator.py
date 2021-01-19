@@ -10,7 +10,7 @@ phiL = 0
 L = 1
 dx = L / 100
 x = np.arange(0, L, dx)
-rho_eps = np.arange(-1000, 1001, 50)
+rho_eps = np.arange(-1000, 1001, 10)
 
 with open('dataset.csv', 'w') as csvfile:
     filewriter = csv.writer(
