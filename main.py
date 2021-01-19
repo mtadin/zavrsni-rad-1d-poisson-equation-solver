@@ -7,18 +7,23 @@ from tensorflow.keras import models
 # import matplotlib.pyplot as plt
 
 # dataset
-dataset = pd.read_csv('dataset.csv', sep=',', names=['Features', 'Labels'])
+dataset = pd.read_csv('dataset.csv', sep=',', names=['x', 'rho_eps', 'Labels'])
 inputs = dataset.copy()
+inputs['rho_eps'] = inputs['rho_eps']/1000
 outputs = inputs.pop('Labels')
+print(inputs)
+print(outputs)
 
 # model
 model = keras.Sequential()
-model.add(keras.layers.Dense(1, input_shape=(1,2)))
-model.compile(loss='mse', optimizer='SGD') # optimizer SGD ili Adadelta
+model.add(keras.layers.Dense(30, activation='relu'))
+model.add(keras.layers.Dense(1))
+model.compile(loss='mse', optimizer='adam') # optimizer SGD ili adam
 
 # treniranje modela
-model.fit(inputs, outputs)
+model.fit(inputs.values, outputs.values, epochs=100)
 
 # predictions
-# predictions = model.predict()
-# print(predictions)
+predictions = model.predict(inputs.values)
+print(predictions[:5, :])
+print(outputs.values[:5])

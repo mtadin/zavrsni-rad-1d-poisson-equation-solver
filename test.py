@@ -33,3 +33,5 @@ print(dataset)
 # model.add(keras.layers.Activation('relu'))
 # model.add(keras.layers.Dense(1))
 # model.compile(loss='mse', optimizer='adam')
+
+#sklearn preprocessing min/max scaler
