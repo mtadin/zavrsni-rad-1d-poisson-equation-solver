@@ -20,10 +20,14 @@ model.add(keras.layers.Dense(200, activation='relu'))
 model.add(keras.layers.Dense(100, activation='relu'))
 # model.add(keras.layers.Dense(10, activation='relu')) treci sloj usporava treniranje, a opcenito ne poboljsava rezultate
 model.add(keras.layers.Dense(1))
-model.compile(loss='mse', optimizer='adam') # optimizer SGD ili adam
+adam = tf.keras.optimizers.Adam(epsilon=1.0) # default value: 1e-7
+# prema zabiljesci u api dokumentaciji za adam optimizer, default vrijednost nije primjenjiva u svim slucajevima
+# postavljena na 0.1 daje opcenito jednake rezultate u 50 epoha manje
+# postavljena na 1.0 daje visestruko manje rezultate u 50 epoha manje
+model.compile(loss='mse', optimizer=adam) # optimizer SGD ili adam
 
 # treniranje modela
-model.fit(inputs.values, outputs.values, epochs=100)
+model.fit(inputs.values, outputs.values, epochs=60)
 
 # predictions
 predictions = model.predict(inputs.values)
