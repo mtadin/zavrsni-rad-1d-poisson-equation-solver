@@ -9,19 +9,21 @@ from tensorflow.keras import models
 # dataset
 dataset = pd.read_csv('dataset.csv', sep=',', names=['x', 'rho_eps', 'Labels'])
 inputs = dataset.copy()
-inputs['rho_eps'] = inputs['rho_eps']/1000
+inputs['rho_eps'] = inputs['rho_eps']/1000 # normalizacija inputa
 outputs = inputs.pop('Labels')
 print(inputs)
 print(outputs)
 
 # model
 model = keras.Sequential()
-model.add(keras.layers.Dense(30, activation='relu'))
+model.add(keras.layers.Dense(200, activation='relu'))
+model.add(keras.layers.Dense(100, activation='relu'))
+# model.add(keras.layers.Dense(10, activation='relu'))
 model.add(keras.layers.Dense(1))
 model.compile(loss='mse', optimizer='adam') # optimizer SGD ili adam
 
 # treniranje modela
-model.fit(inputs.values, outputs.values, epochs=100)
+model.fit(inputs.values, outputs.values, epochs=125)
 
 # predictions
 predictions = model.predict(inputs.values)
