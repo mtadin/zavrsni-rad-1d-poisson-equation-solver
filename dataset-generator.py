@@ -10,7 +10,9 @@ phiL = 0
 L = 1
 dx = L / 100
 x = np.arange(0, L, dx)
-rho_eps = np.arange(-1000, 1001, 10)
+step = input("Unesite step: ")
+step = int(step)
+rho_eps = np.arange(-1000, 1001, step)
 
 with open('dataset.csv', 'w') as csvfile:
     filewriter = csv.writer(

@@ -27,7 +27,9 @@ adam = tf.keras.optimizers.Adam(epsilon=1.0) # default value: 1e-7
 model.compile(loss='mse', optimizer=adam) # optimizer adam ili SGD
 
 # treniranje modela
-model.fit(inputs.values, outputs.values, epochs=60)
+model.fit(inputs.values, outputs.values, epochs=200)
 
 # spremanje modela
-model.save('model_example.h5')
+modelName = input("Unesite ime modela za spremanje: ")
+model.save('./models/' + modelName + '.h5')
+print('Model spremljen kao ' + modelName + '.h5')

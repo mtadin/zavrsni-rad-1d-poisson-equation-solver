@@ -2,37 +2,58 @@ import numpy as np
 import pandas as pd
 from tensorflow.keras.models import load_model
 import matplotlib.pyplot as plt
+import csv
 
-# dataset
-dataset = pd.read_csv('dataset.csv', sep=',', names=['x', 'rho_eps', 'Labels'])
-inputs = dataset.copy()
-inputs['rho_eps'] = inputs['rho_eps']/1000 # normalizacija inputa
-outputs = inputs.pop('Labels')
-# print(inputs)
-# print(outputs)
+# uzimanje korisnikovog unosa
+while True:
+    try:
+        inputNumber = int(input("> Unesite broj koji zelite isprobati: "))
+        break
+    except:
+        print("> Unesite integer!")
+
+modelName = input("> Unesite naziv modela kojim zelite vrsiti usporedbu: ")
+modelName = modelName + '.h5'
+
+x = np.arange(0, 1, 0.01)
+# stvaranje filea za usporedbu
+with open('test.csv', 'w') as csvfile:
+    filewriter = csv.writer(
+        csvfile, 
+        delimiter=',',
+        lineterminator='\n'
+        )
+
+    for _x in x:             
+        filewriter.writerow([_x, inputNumber])
 
 # ucitavanje spremljenog modela
-model = load_model('model_example.h5')
+try:
+    if modelName != '.h5':
+        model = load_model('./models/' + modelName)
+    else:
+        model = load_model('./models/e60s10.h5')
+except:
+    print("> Model ne postoji!")
 
-# predictions
-predictions = model.predict(inputs.values)
+# usporedba grafova
+test = pd.read_csv('test.csv', sep=',', names=['x', 'y'])
+test['y'] = test['y']/1000 # normalizacija inputa
 
-print(predictions[:5, :])
-print(outputs.values[:5])
+predictNew = model.predict(test)
 
-# prikaz grafova
-x = np.arange(0, 1, 0.01)
-plt.plot(x, outputs.values[:100])
-plt.plot(x, predictions[:100, :])
-plt.legend(["Analiticko rjesenje", "Generirano rjesenje"])
-plt.show()
+def phi(x, L, phi0, phiL, rho_eps):
+    phi = -0.5 * rho_eps * np.power(x, 2) + ((phiL - phi0)/L + 0.5 * rho_eps * L) * x + phi0
+    return phi
 
-plt.plot(x, outputs.values[10000:10100])
-plt.plot(x, predictions[10000:10100, :])
-plt.legend(["Analiticko rjesenje", "Generirano rjesenje"])
-plt.show()
+phi0 = 100
+phiL = 0
+L = 1
+dx = L / 100
+x = np.arange(0, L, dx)
+rho_eps = inputNumber
 
-plt.plot(x, outputs.values[20000:20100])
-plt.plot(x, predictions[20000:20100, :])
+plt.plot(x, phi(x, L, phi0, phiL, rho_eps))
+plt.plot(x, predictNew)
 plt.legend(["Analiticko rjesenje", "Generirano rjesenje"])
 plt.show()

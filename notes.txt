@@ -1,0 +1,28 @@
+EPOCHS = 60
+e60s10        - step: 10,  loss: 0.0703
+e60s25        - step: 25,  loss: 0.2737
+e60s50        - step: 50,  loss: 2.3434
+e60s100       - step: 100, loss: 30.2630
+
+EPOCHS = 100
+e100s10       - step: 10,  loss: 0.0427 NOTE: nakon ∼60. epohe loss uglavnom varira oko 0.05
+e100s25       - step: 25,  loss: 0.1020
+e100s50       - step: 50,  loss: 0.4348
+e100s100      - step: 100, loss: 3.2812
+
+EPOCHS = 200
+e200s25       - step: 25,  loss: 0.0611
+e200s50       - step: 50,  loss: 0.1396
+e200s100      - step: 100, loss: 0.4956
+e200s200      - step: 200, loss: 2.4969
+
+EPOCHS = 500
+e500s50       - step: 50,  loss: 0.0291
+e500s100      - step: 100, loss: 0.0580
+e500s200      - step: 200, loss: 0.3810
+e500s500      - step: 500, loss: 1.1523
+
+EPOCHS = 1000
+e1000s200     - step: 200, loss: 0.0427
+e1000s500     - step: 500, loss: 0.0461
+e1000s1000    - step: 1000, loss: 0.1247
