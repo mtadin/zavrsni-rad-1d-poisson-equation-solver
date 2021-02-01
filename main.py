@@ -6,9 +6,14 @@ from tensorflow.keras import layers
 from tensorflow.keras import models
 
 # dataset
-dataset = pd.read_csv('dataset.csv', sep=',', names=['x', 'rho_eps', 'Labels'])
+dataset = pd.read_csv('dataset.csv', sep=',', names=['x', 'phi0', 'phiL', 'rho_eps', 'Labels'])
 inputs = dataset.copy()
-inputs['rho_eps'] = inputs['rho_eps']/1000 # normalizacija inputa
+
+# normalizacija inputa
+inputs['rho_eps'] = inputs['rho_eps']/1000
+inputs['phi0'] = inputs['phi0']/1000
+inputs['phiL'] = inputs['phiL']/1000
+
 outputs = inputs.pop('Labels')
 # print(inputs)
 # print(outputs)
@@ -27,7 +32,7 @@ adam = tf.keras.optimizers.Adam(epsilon=1.0) # default value: 1e-7
 model.compile(loss='mse', optimizer=adam) # optimizer adam ili SGD
 
 # treniranje modela
-model.fit(inputs.values, outputs.values, epochs=200)
+model.fit(inputs.values, outputs.values, epochs=250)
 
 # spremanje modela
 modelName = input("Unesite ime modela za spremanje: ")
