@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+import time
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras import models
@@ -27,7 +28,11 @@ adam = tf.keras.optimizers.Adam(epsilon=1.0) # default value: 1e-7
 model.compile(loss='mse', optimizer=adam) # optimizer adam ili SGD
 
 # treniranje modela
-model.fit(inputs.values, outputs.values, epochs=200)
+time_start = time.perf_counter()
+model.fit(inputs.values, outputs.values, epochs=500)
+time_end = time.perf_counter()
+print(f"Model trained in {time_end - time_start:0.4f} seconds")
+
 
 # spremanje modela
 modelName = input("Unesite ime modela za spremanje: ")
