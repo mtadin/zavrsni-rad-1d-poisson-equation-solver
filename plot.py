@@ -15,8 +15,8 @@ while True:
 modelName = input("> Unesite naziv modela kojim zelite vrsiti usporedbu: ")
 modelName = modelName + '.h5'
 
-phi0 = 100
-phiL = 0
+phi0 = inputNumber
+phiL = inputNumber
 
 x = np.arange(0, 1, 0.01)
 # stvaranje filea za usporedbu

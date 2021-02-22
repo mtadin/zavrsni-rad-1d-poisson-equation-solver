@@ -24,4 +24,4 @@ with open('dataset.csv', 'w') as csvfile:
     for num in rho_eps:
         for _x in x:
         # print(num, phi(num))               
-            filewriter.writerow([_x, phi0, phiL, num, phi(_x, L, phi0, phiL, num)])
+            filewriter.writerow([_x, num, num, num, phi(_x, L, num, num, num)])
