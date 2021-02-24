@@ -1,0 +1,31 @@
+-- fi0 od 0 do 400, fiL od 1000 do 600, step 100, ro/eps=50
+STEP = 50, EPOCH = 200
+test1 - default vrijednosti, loss=2.5
+test2 - batchsize=100, loss=3.5
+test3 - batchsize=100, treci layer, loss=3.5
+test4 - batchsize=100, cetiri layera, loss=1.6
+test5 - default batchsize, cetiri layera, loss=2.9
+
+STEP = 50, EPOCH = 1000
+test8 - batchsize=4100, cetiri layera, loss=1.1
+
+STEP = 10, EPOCH = 100
+test10 - batchsize=100, cetiri layera, loss=1.04
+
+-- fi0 od -1000 do -100, fiL od 1000 do 100, step 50, ro/eps=50
+test11 - batchsize=100, cetiri layera, loss=2.21
+test12 - batchsize=100, dva layera, loss=0.533
+test13 - batchsize=100, dva layera, neuroni:400/200, loss=0.3702
+test14 - batchsize=100, dva layera, neuroni:1000/500, loss=0.7556
+test15 - batchsize=100, dva layera, neuroni:600/300, loss=0.1631
+test16 - batchsize=100, tri layera, neuroni:600/300/150, loss=0.9737
+test17 - batchsize=100, dva layera, neuroni:600/300, epsilon 0.1, loss=0.8182
+
+-- fi0 od -1000 do -25, fiL od 1000 do 25, step 25, ro/eps=50
+test18 - batchsize=100, dva layera, neuroni:600/300, loss=0.3444
+
+-- fi0 od -1000 do -100, fiL od 1000 do 100, step 100, ro/eps=20
+test19 - batchsize=100, dva layera, neuroni:600/300, loss=0.3602
+
+-- fi0 od -1000 do -50, fiL od 1000 do 50, step 100, ro/eps=20
+test20 - batchsize=100, dva layera, neuroni:600/300, loss=0.2315

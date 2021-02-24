@@ -12,11 +12,22 @@ while True:
     except:
         print("> Unesite integer!")
 
+while True:
+    try:
+        phi0 = int(input("> Unesite phi0: "))
+        break
+    except:
+        print("> Unesite integer!")
+
+while True:
+    try:
+        phiL = int(input("> Unesite phiL: "))
+        break
+    except:
+        print("> Unesite integer!")
+
 modelName = input("> Unesite naziv modela kojim zelite vrsiti usporedbu: ")
 modelName = modelName + '.h5'
-
-phi0 = inputNumber
-phiL = inputNumber
 
 x = np.arange(0, 1, 0.01)
 # stvaranje filea za usporedbu
@@ -28,7 +39,7 @@ with open('test.csv', 'w') as csvfile:
         )
 
     for _x in x:             
-        filewriter.writerow([_x, phi0, phiL, inputNumber])
+        filewriter.writerow([_x, inputNumber, phi0, phiL])
 
 # ucitavanje spremljenog modela
 try:
@@ -40,7 +51,7 @@ except:
     print("> Model ne postoji!")
 
 # usporedba grafova
-test = pd.read_csv('test.csv', sep=',', names=['x', 'phi0', 'phiL', 'y'])
+test = pd.read_csv('test.csv', sep=',', names=['x', 'y', 'phi0', 'phiL'])
 
 # normalizacija inputa
 test['y'] = test['y']/1000
