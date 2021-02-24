@@ -19,9 +19,9 @@ with open('dataset.csv', 'w') as csvfile:
         lineterminator='\n'
         )
 
-    for step in range(0, 1000, 50):
-        phi0 = -1000 + step
-        phiL = 1000 - step
+    for step in range(-1000, 1001, 40):
+        phi0 = step
+        phiL = -step
         for num in rho_eps:
             for _x in x:
             # print(num, phi(num))               

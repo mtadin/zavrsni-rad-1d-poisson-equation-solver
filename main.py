@@ -29,7 +29,8 @@ adam = tf.keras.optimizers.Adam(epsilon=1.0)
 model.compile(loss='mse', optimizer=adam)
 
 # treniranje modela
-model.fit(inputs.values, outputs.values, batch_size=100, epochs=100)
+csv_logger = keras.callbacks.CSVLogger('log.csv', separator=",", append=False)
+model.fit(inputs.values, outputs.values, batch_size=100, epochs=100, callbacks=[csv_logger])
 
 # spremanje modela
 modelName = input("Unesite ime modela za spremanje: ")
