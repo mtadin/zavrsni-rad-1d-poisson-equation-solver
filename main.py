@@ -30,7 +30,7 @@ model.compile(loss='mse', optimizer=adam)
 
 # treniranje modela
 csv_logger = keras.callbacks.CSVLogger('log.csv', separator=",", append=False)
-model.fit(inputs.values, outputs.values, batch_size=100, epochs=100, callbacks=[csv_logger])
+model.fit(inputs.values, outputs.values, batch_size=1000, epochs=20, callbacks=[csv_logger])
 
 # spremanje modela
 modelName = input("Unesite ime modela za spremanje: ")

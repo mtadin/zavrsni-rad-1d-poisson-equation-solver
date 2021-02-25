@@ -19,10 +19,11 @@ with open('dataset.csv', 'w') as csvfile:
         lineterminator='\n'
         )
 
-    for step in range(-1000, 1001, 40):
-        phi0 = step
-        phiL = -step
-        for num in rho_eps:
-            for _x in x:
-            # print(num, phi(num))               
-                filewriter.writerow([_x, num, phi0, phiL, phi(_x, L, phi0, phiL, num)])
+    for step1 in range(-1000, 1001, 40):
+        phi0 = step1
+        for step2 in range(-1000, 1001, 40):
+            phiL = step2
+            for num in rho_eps:
+                for _x in x:
+                # print(num, phi(num))               
+                    filewriter.writerow([_x, num, phi0, phiL, phi(_x, L, phi0, phiL, num)])
